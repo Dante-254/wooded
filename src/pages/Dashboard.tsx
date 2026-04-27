@@ -1,7 +1,8 @@
 import StatusBadge from "../components/StatusBadge";
-import { products } from "../data/products";
+// import { useProducts } from "../hooks/useProducts";
 
-function Dashboard() {
+function Dashboard({ products }: any) {
+  // const { products } = useProducts();
   const total = products.length;
   const available = products.filter((p) => p.status === "available").length;
   const sold = products.filter((p) => p.status === "sold").length;
@@ -33,7 +34,7 @@ function Dashboard() {
             icon="💰"
           />
         </div>
-      
+
         <div className="col-6 col-md-3">
           <StatusBadge
             label="Pending Orders"
@@ -41,7 +42,7 @@ function Dashboard() {
             color="warning"
             icon="⏳"
           />
-          </div>
+        </div>
       </div>
     </div>
   );

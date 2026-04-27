@@ -8,7 +8,7 @@ function Navbar() {
       <div className="navbar-nav d-flex justify-content-space-between gap-3 flex-row">
         <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
         <NavLink className="nav-link" to="/products">Products</NavLink>
-        <NavLink className="nav-link" to="/add">Add Product</NavLink>
+        <NavLink className="nav-link" to="/products/add">Add Product</NavLink>
         <NavLink className="nav-link" to="/sales">Sales Log</NavLink>
       </div>
     </nav>

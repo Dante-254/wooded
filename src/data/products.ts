@@ -12,13 +12,14 @@ export interface Product {
   dateSold?: string; // the ? means this field is optional
 }
 
-export const products = [
+export const products: Product[] = [
   {
     id: 1,
     name: "Chopping Board #1",
     type: "Chopping Board",
     status: "available",
     price: 850,
+    note: ""
   },
   {
     id: 2,
@@ -26,6 +27,8 @@ export const products = [
     type: "Chopping Board",
     status: "sold",
     price: 850,
+    note: ""
+
   },
   {
     id: 3,
@@ -33,6 +36,7 @@ export const products = [
     type: "Key Hanger",
     status: "reserved",
     price: 400,
+    note: ""
   },
   {
     id: 4,
@@ -40,6 +44,7 @@ export const products = [
     type: "Key Hanger",
     status: "available",
     price: 400,
+    note: ""
   },
   {
     id: 5,
@@ -47,5 +52,6 @@ export const products = [
     type: "Chopping Board",
     status: "available",
     price: 850,
+    note: ""
   },
 ];
