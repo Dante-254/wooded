@@ -5,7 +5,7 @@ interface StatCardProps {
   icon: string
 }
 
-const StatCard = ({ label, value, color, icon }: StatCardProps) => {
+const StatCard = ({ label, value, /*color, icon*/ }: StatCardProps) => {
   return (
     <div className="card p-3 shadow-sm h-100">
       <p className="text-muted mb-1">{label}</p>
