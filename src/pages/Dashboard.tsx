@@ -1,8 +1,9 @@
 import StatusBadge from "../components/StatusBadge";
 // import { useProducts } from "../hooks/useProducts";
+import { useProducts } from '../context/ProductContext'
 
-function Dashboard({ products }: any) {
-  // const { products } = useProducts();
+function Dashboard() {
+   const { products } = useProducts();
   const total = products.length;
   const available = products.filter((p) => p.status === "available").length;
   const sold = products.filter((p) => p.status === "sold").length;

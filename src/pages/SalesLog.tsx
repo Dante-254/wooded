@@ -1,9 +1,8 @@
 // import { useProducts } from '../hooks/useProducts'
+import { useProducts } from '../context/ProductContext'
 
-const SalesLog = ({ products }: any) => {
-
-
-  // const { products } = useProducts()
+const SalesLog = () => {
+  const { products } = useProducts()
 
   const sold = products.filter(p => p.status === 'sold')
 

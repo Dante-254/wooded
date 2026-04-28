@@ -1,9 +1,11 @@
 import { useState } from "react";
 // import { useProducts } from '../hooks/useProducts'
+import { useProducts } from '../context/ProductContext'
 
 
 
-const ProductList = ({ products }: any) => {
+const ProductList = () => {
+  const { products } = useProducts()
   // const { products } = useProducts()
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");

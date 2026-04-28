@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 // import { useProducts } from '../hooks/useProducts'
+import { useProducts } from '../context/ProductContext'
+import type { Product } from "../data/products";
 
 
 
-function AddProduct({ addProduct }: any) {
-  // const { addProduct } = useProducts()
-  const [form, setForm] = useState({
+function AddProduct() {
+  const { addProduct } = useProducts()
+  const [form, setForm] = useState<Omit<Product, "id">>({
     name: "",
     type: "Chopping Board",
     price: 0,
