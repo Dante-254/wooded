@@ -1,17 +1,41 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-function Navbar() {
+const Navbar = () => {
+  const { user, isAdmin, login, logout } = useAuth();
+
   return (
-    <nav className="navbar bg-light">
-      <span className="navbar-brand fw-bold">🪵 Villakazi Scouts</span>
-      <div className="navbar-nav d-flex justify-content-space-between gap-3 flex-row">
-        <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
-        <NavLink className="nav-link" to="/products">Products</NavLink>
-        <NavLink className="nav-link" to="/products/add">Add Product</NavLink>
-        <NavLink className="nav-link" to="/sales">Sales Log</NavLink>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+      <span className="navbar-brand fw-bold">Villakazi Scouts</span>
+      <div className="navbar-nav ms-auto d-flex align-items-center gap-2">
+        <NavLink className="nav-link" to="/dashboard">
+          Dashboard
+        </NavLink>
+        <NavLink className="nav-link" to="/products">
+          Products
+        </NavLink>
+        {isAdmin && (
+          <NavLink className="nav-link" to="/add">
+            Add Product
+          </NavLink>
+        )}
+        {isAdmin && (
+          <NavLink className="nav-link" to="/sales">
+            Sales Log
+          </NavLink>
+        )}
+        {user ? (
+          <button className="btn btn-outline-light btn-sm" onClick={logout}>
+            Logout
+          </button>
+        ) : (
+          <button className="btn btn-success btn-sm" onClick={login}>
+            Admin Login
+          </button>
+        )}
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
