@@ -9,7 +9,7 @@ import { auth } from "../firebase";
 import {
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
+  /*signInWithRedirect,*/
   signOut,
   onAuthStateChanged,
   type User,
