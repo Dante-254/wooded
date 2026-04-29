@@ -7,12 +7,16 @@ import {
   type ReactNode,
 } from "react";
 import { db } from "../firebase";
-import { collection, onSnapshot, addDoc } from "firebase/firestore";
+import { collection, onSnapshot, addDoc, updateDoc,
+  deleteDoc,
+  doc, } from "firebase/firestore";
 import { type Product } from "../data/products";
 
 interface ProductContextType {
   products: Product[];
   addProduct: (newProduct: Omit<Product, "id">) => void;
+  updateProduct: (id: string, updates: Partial<Product>) => void
+  deleteProduct: (id: string) => void
 }
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
@@ -34,9 +38,16 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const addProduct = async (newProduct: Omit<Product, "id">) => {
     await addDoc(collection(db, "products"), newProduct);
   };
+  const updateProduct = async (id: string, updates: Partial<Product>) => {
+  await updateDoc(doc(db, 'products', id), updates)
+}
+
+const deleteProduct = async (id: string) => {
+  await deleteDoc(doc(db, 'products', id))
+}
 
   return (
-    <ProductContext.Provider value={{ products, addProduct }}>
+    <ProductContext.Provider value={{ products, addProduct, updateProduct, deleteProduct }}>
       {children}
     </ProductContext.Provider>
   );
