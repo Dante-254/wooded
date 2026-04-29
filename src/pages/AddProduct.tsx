@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 // import { useProducts } from '../hooks/useProducts'
-import { useProducts } from '../context/ProductContext'
+import { useProducts } from "../context/ProductContext";
 import type { Product } from "../data/products";
-
-
+import { useAuth } from "../context/AuthContext";
 
 function AddProduct() {
-  const { addProduct } = useProducts()
+  const { isAdmin } = useAuth();
+
+  if (!isAdmin) {
+    return (
+      <div className="text-center mt-5">
+        <h5 className="text-muted">
+          You don't have permission to access this page.
+        </h5>
+      </div>
+    );
+  }
+  const { addProduct } = useProducts();
   const [form, setForm] = useState<Omit<Product, "id">>({
     name: "",
     type: "Chopping Board",
@@ -24,14 +34,19 @@ function AddProduct() {
   };
 
   const handleSubmit = () => {
-  if (!form.name.trim()) {
-    alert('Please enter a product name')
-    return
-  }
-  addProduct(form)
-  setForm({ name: '', type: 'Chopping Board', price: 0, status: 'available', note: '' })
-  alert(`Product "${form.name}" added!`)
-
+    if (!form.name.trim()) {
+      alert("Please enter a product name");
+      return;
+    }
+    addProduct(form);
+    setForm({
+      name: "",
+      type: "Chopping Board",
+      price: 0,
+      status: "available",
+      note: "",
+    });
+    alert(`Product "${form.name}" added!`);
   };
   return (
     <div className="row">

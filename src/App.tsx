@@ -6,23 +6,26 @@ import ProductList from "./pages/ProductList.tsx";
 import AddProduct from "./pages/AddProduct.tsx";
 import SalesLog from "./pages/SalesLog.tsx";
 import { ProductProvider } from "./context/ProductContext.tsx";
+import { AuthProvider } from "./context/AuthContext.tsx";
 
 function App() {
   //const { products, addProduct } = useProducts();
   return (
     <BrowserRouter>
-      <ProductProvider>
-        <Navbar />
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/products" element={<ProductList />} />
-            <Route path="/products/add" element={<AddProduct />} />
-            <Route path="/sales" element={<SalesLog />} />
-          </Routes>
-        </div>
-      </ProductProvider>
+      <AuthProvider>
+        <ProductProvider>
+          <Navbar />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/products" element={<ProductList />} />
+              <Route path="/products/add" element={<AddProduct />} />
+              <Route path="/sales" element={<SalesLog />} />
+            </Routes>
+          </div>
+        </ProductProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

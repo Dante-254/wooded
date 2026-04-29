@@ -1,12 +1,24 @@
 // import { useProducts } from '../hooks/useProducts'
-import { useProducts } from '../context/ProductContext'
+import { useAuth } from "../context/AuthContext";
+import { useProducts } from "../context/ProductContext";
 
 const SalesLog = () => {
-  const { products } = useProducts()
+  const { isAdmin } = useAuth();
 
-  const sold = products.filter(p => p.status === 'sold')
+  if (!isAdmin) {
+    return (
+      <div className="text-center mt-5">
+        <h5 className="text-muted">
+          You don't have permission to access this page.
+        </h5>
+      </div>
+    );
+  }
+  const { products } = useProducts();
 
-  const totalRevenue = sold.reduce((sum, p) => sum + Number(p.price), 0)
+  const sold = products.filter((p) => p.status === "sold");
+
+  const totalRevenue = sold.reduce((sum, p) => sum + Number(p.price), 0);
 
   return (
     <div>
@@ -31,20 +43,19 @@ const SalesLog = () => {
             </tr>
           </thead>
           <tbody>
-            {sold.map(p => (
+            {sold.map((p) => (
               <tr key={p.id}>
                 <td>{p.name}</td>
                 <td>{p.type}</td>
                 <td>KES {p.price.toLocaleString()}</td>
-                <td className="text-muted">{p.note || '—'}</td>
+                <td className="text-muted">{p.note || "—"}</td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
-
     </div>
-  )
-}
+  );
+};
 
-export default SalesLog
+export default SalesLog;
