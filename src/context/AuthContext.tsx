@@ -13,6 +13,7 @@ import {
   signOut,
   onAuthStateChanged,
   type User,
+  getRedirectResult,
 } from "firebase/auth";
 
 const ADMIN_EMAILS = ["giciadaniel575@gmail.com"];
@@ -32,21 +33,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    getRedirectResult(auth).then((result) => {
+      if (result?.user) {
+        console.log("Redirect result user:", result.user.email);
+      }
+    });
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("Auth state changed:", currentUser?.email);
       setUser(currentUser);
       setLoading(false);
     });
+
     return () => unsubscribe();
   }, []);
 
-  // const login = () => {
-  //   const provider = new GoogleAuthProvider()
-  //   signInWithPopup(auth, provider)
-  // }
   const login = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+    signInWithPopup(auth, provider);
   };
+  // const login = () => {
+  //   console.log("login clicked");
+  //   const provider = new GoogleAuthProvider();
+  //   signInWithRedirect(auth, provider);
+  // };
 
   const logout = () => signOut(auth);
 
