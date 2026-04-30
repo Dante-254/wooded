@@ -17,6 +17,8 @@ const ProductList = () => {
     reserved: "warning",
     "in-progress": "primary",
   };
+  const statusValues = ["available", "sold", "reserved", "in-progress"] as const
+  type ProductStatus = typeof statusValues[number]
   return (
     <div>
       <h4>Products</h4>
@@ -33,10 +35,9 @@ const ProductList = () => {
         onChange={(e) => setStatus(e.target.value)}
       >
         <option value="all">status</option>
-        <option value="available">Available</option>
-        <option value="sold">Sold</option>
-        <option value="reserved">Reserved</option>
-        <option value="in-progress">In Progress</option>
+        {statusValues.map(status => (
+          <option key={status} value={status}>{status}</option>
+        ))}
       </select>
       <table className="table table-hover">
         <thead className="table-dark">
@@ -62,12 +63,11 @@ const ProductList = () => {
           <select
             className={`badge bg-${statusColors[p.status]} border-0`}
             value={p.status}
-            onChange={e => updateProduct(p.id, { status: e.target.value })}
+            onChange={e => updateProduct(p.id, { status: e.target.value as ProductStatus })}
           >
-            <option value="available">Available</option>
-            <option value="sold">Sold</option>
-            <option value="reserved">Reserved</option>
-            <option value="in-progress">In Progress</option>
+            {statusValues.map(status => (
+              <option key={status} value={status}>{status}</option>
+            ))}
           </select>
         ) : (
           <span className={`badge bg-${statusColors[p.status]}`}>

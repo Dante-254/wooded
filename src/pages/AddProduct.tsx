@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useProducts } from "../context/ProductContext";
 import type { Product } from "../data/products";
 import { useAuth } from "../context/AuthContext";
+import ImageUpload from "../components/ImageUpload";
 
 function AddProduct() {
   const { isAdmin } = useAuth();
@@ -23,6 +24,7 @@ function AddProduct() {
     price: 0,
     status: "available",
     note: "",
+    images: [] as string[],
   });
 
   const handleChange = (
@@ -45,8 +47,12 @@ function AddProduct() {
       price: 0,
       status: "available",
       note: "",
+      images: [],
     });
     alert(`Product "${form.name}" added!`);
+  };
+  const handleImageUpload = (url: string) => {
+    setForm((prev) => ({ ...prev, images: [...(prev.images ?? []), url] }));
   };
   return (
     <div className="row">
@@ -112,6 +118,27 @@ function AddProduct() {
             value={form.note}
             onChange={handleChange}
           />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Product Images</label>
+          <ImageUpload onUpload={handleImageUpload} />
+          {(form.images ?? []).length > 0 && (
+            <div className="d-flex gap-2 flex-wrap mt-2">
+              {(form.images ?? []).map((url, i) => (
+                <img
+                  key={i}
+                  src={url}
+                  alt={`preview ${i}`}
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         <button className="btn btn-dark w-100" onClick={handleSubmit}>

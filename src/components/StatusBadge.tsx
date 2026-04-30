@@ -1,8 +1,6 @@
 interface StatCardProps {
   label: string
   value: number
-  color: 'success' | 'danger' | 'warning' | 'primary'
-  icon: string
 }
 
 const StatCard = ({ label, value, /*color, icon*/ }: StatCardProps) => {

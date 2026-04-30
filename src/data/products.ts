@@ -9,7 +9,8 @@ export interface Product {
   status: ProductStatus;
   price: number;
   note: string;
-  dateSold?: string; // the ? means this field is optional
+  dateSold?: string;
+  images?: string[];
 }
 
 export const products: Product[] = [];
