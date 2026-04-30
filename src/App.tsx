@@ -8,6 +8,7 @@ import SalesLog from "./pages/SalesLog.tsx";
 import { ProductProvider } from "./context/ProductContext.tsx";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import EditProduct from './pages/EditProduct'
+import ProductDetail from './pages/ProductDetail'
 
 function App() {
   //const { products, addProduct } = useProducts();
@@ -24,6 +25,7 @@ function App() {
               <Route path="/add" element={<AddProduct />} />
               <Route path="/sales" element={<SalesLog />} />
               <Route path="/edit/:id" element={<EditProduct />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
             </Routes>
           </div>
         </ProductProvider>

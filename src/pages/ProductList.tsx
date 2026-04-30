@@ -80,7 +80,9 @@ const ProductList = () => {
                   borderRadius: "14px",
                   overflow: "hidden",
                   boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
+                  cursor: 'pointer' 
                 }}
+                onClick={() => navigate(`/product/${p.id}`)}
               >
                 {/* Image */}
                 <div
@@ -125,6 +127,7 @@ const ProductList = () => {
                       {p.name}
                     </p>
                     {isAdmin ? (
+                      <div onClick={e => e.stopPropagation()}>
                       <select
                         className={`badge border-0 bg-${statusColors[p.status]}`}
                         style={{ fontSize: "0.7rem", cursor: "pointer" }}
@@ -140,6 +143,7 @@ const ProductList = () => {
                         <option value="reserved">Reserved</option>
                         <option value="in-progress">In Progress</option>
                       </select>
+                      </div>
                     ) : (
                       <span
                         className={`badge bg-${statusColors[p.status]}`}
@@ -159,7 +163,7 @@ const ProductList = () => {
                       KES {p.price.toLocaleString()}
                     </p>
                     {isAdmin && (
-                      <div className="d-flex gap-2 mt-1">
+                      <div className="d-flex gap-2 mt-1" onClick={e => e.stopPropagation()}>
                         <button
                           className="btn btn-sm"
                           style={{
@@ -167,7 +171,7 @@ const ProductList = () => {
                             color: "#555",
                             background: "none",
                             border: "none",
-                            padding: 0,
+                            padding: 0, 
                           }}
                           onClick={() => navigate(`/edit/${p.id}`)}
                         >

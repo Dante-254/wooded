@@ -1,8 +1,10 @@
 import StatusBadge from "../components/StatusBadge";
 // import { useProducts } from "../hooks/useProducts";
 import { useProducts } from "../context/ProductContext";
+import { useNavigate } from 'react-router-dom'
 
 function Dashboard() {
+  const navigate = useNavigate()
   const { products } = useProducts();
   const total = products.length;
   const available = products.filter((p) => p.status === "available").length;
@@ -55,7 +57,8 @@ function Dashboard() {
             <div className="col-6 col-md-4 col-lg-3" key={p.id}>
               <div
                 className="card h-100 border-0 shadow-sm"
-                style={{ borderRadius: "12px", overflow: "hidden" }}
+                style={{ borderRadius: "12px", overflow: "hidden", cursor: 'pointer'  }}
+                onClick={() => navigate(`/product/${p.id}`)}
               >
                 <div
                   style={{
