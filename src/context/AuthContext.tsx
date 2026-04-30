@@ -16,7 +16,7 @@ import {
   getRedirectResult,
 } from "firebase/auth";
 
-const ADMIN_EMAILS = ["giciadaniel575@gmail.com"];
+const ADMIN_EMAILS = ["giciadaniel575@gmail.com", "engotiendejr@gmail.com", "silvestermwangi19@gmail.com"];
 
 interface AuthContextType {
   user: User | null;
