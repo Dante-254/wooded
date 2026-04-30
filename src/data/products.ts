@@ -5,8 +5,8 @@ export type ProductType = "Chopping Board" | "Key Hanger" | "Other";
 export interface Product {
   id: string;
   name: string;
-  type: ProductType;
-  status: ProductStatus;
+  type: string;
+  status: string;
   price: number;
   note: string;
   dateSold?: string;
