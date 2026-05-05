@@ -136,6 +136,11 @@ const ProductDetail = () => {
           <h4 className="mb-3" style={{ color: "#1a1a1a" }}>
             KES {product.price.toLocaleString()}
           </h4>
+          {product.dimensions && (
+  <p className="text-muted mb-3" style={{ fontSize: '0.875rem' }}>
+     {product.dimensions.length} × {product.dimensions.width} × {product.dimensions.height} cm
+  </p>
+)}
 
           {product.note && (
             <p

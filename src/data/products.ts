@@ -11,6 +11,11 @@ export interface Product {
   note: string;
   dateSold?: string;
   images?: string[];
+   dimensions?: {
+    length: number
+    width: number
+    height: number
+  };
 }
 
 export const products: Product[] = [];

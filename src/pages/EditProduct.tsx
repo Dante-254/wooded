@@ -19,6 +19,7 @@ const EditProduct = () => {
     status: "",
     note: "",
     images: [] as string[],
+    dimensions: { length: 0, width: 0, height: 0 },
   });
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const EditProduct = () => {
         status: product.status,
         note: product.note,
         images: product.images ?? [],
+        dimensions: product.dimensions ?? { length: 0, width: 0, height: 0 },
       });
     }
   }, [product]);
@@ -79,6 +81,17 @@ const EditProduct = () => {
     await updateProduct(id!, form);
     navigate("/products");
   };
+  const handleDimension = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setForm(prev => ({
+    ...prev,
+    dimensions: {
+      length: prev.dimensions?.length ?? 0,
+      width: prev.dimensions?.width ?? 0,
+      height: prev.dimensions?.height ?? 0,
+      [e.target.name]: Number(e.target.value)
+    }
+  }))
+};
 
   return (
     <div className="row">
@@ -145,6 +158,36 @@ const EditProduct = () => {
             onChange={handleChange}
           />
         </div>
+        <div className="mb-3">
+  <label className="form-label">Dimensions (cm)</label>
+  <div className="d-flex gap-2">
+    <input
+      type="number"
+      name="length"
+      className="form-control"
+      placeholder="Length"
+      value={form.dimensions?.length || ''}
+      onChange={handleDimension}
+    />
+    <input
+      type="number"
+      name="width"
+      className="form-control"
+      placeholder="Width"
+      value={form.dimensions?.width || ''}
+      onChange={handleDimension}
+    />
+    <input
+      type="number"
+      name="height"
+      className="form-control"
+      placeholder="Height"
+      value={form.dimensions?.height || ''}
+      onChange={handleDimension}
+    />
+  </div>
+  <small className="text-muted">Length × Width × Height in centimetres</small>
+</div>
 
         <div className="mb-3">
           <label className="form-label">Images</label>
