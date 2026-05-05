@@ -50,7 +50,7 @@ function Dashboard() {
           letterSpacing: "0.5px",
           textTransform: "uppercase",
           fontSize: "0.75rem",
-          color: "#888",
+          color: "var(--color-text-muted)",
         }}
       >
         Available Products
@@ -61,14 +61,14 @@ function Dashboard() {
           .map((p) => (
             <div className="col-6 col-md-4 col-lg-3" key={p.id}>
               <div
-                className="card h-100 border-0 shadow-sm"
+                className="card h-100 border-0 shadow-sm brand-accent-card"
                 style={{ borderRadius: "12px", overflow: "hidden", cursor: 'pointer'  }}
                 onClick={() => navigate(`/product/${p.id}`)}
               >
                 <div
                   style={{
                     height: "140px",
-                    backgroundColor: "#f5f0eb",
+                    backgroundColor: "var(--color-surface-card)",
                     overflow: "hidden",
                   }}
                 >

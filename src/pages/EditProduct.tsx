@@ -234,7 +234,7 @@ const EditProduct = () => {
         </div>
 
         <div className="d-flex gap-2">
-          <button className="btn btn-dark" onClick={handleSubmit}>
+          <button className="btn btn-brand-primary" onClick={handleSubmit}>
             Save Changes
           </button>
           <button

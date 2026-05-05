@@ -185,7 +185,7 @@ function AddProduct() {
           )}
         </div>
 
-        <button className="btn btn-dark w-100" onClick={handleSubmit}>
+        <button className="btn btn-brand-primary w-100" onClick={handleSubmit}>
           Add Product
         </button>
       </div>

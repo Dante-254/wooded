@@ -25,7 +25,7 @@ const HeroSlideshow = ({ products }: HeroSlideshowProps) => {
       <div
         style={{
           height: "420px",
-          backgroundColor: "#f5f0eb",
+          backgroundColor: "var(--color-surface-card)",
           borderRadius: "16px",
           display: "flex",
           alignItems: "center",
@@ -76,7 +76,7 @@ const HeroSlideshow = ({ products }: HeroSlideshowProps) => {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%)",
+            "linear-gradient(to top, rgba(232,121,58,0.42) 0%, rgba(26,26,26,0.28) 55%, rgba(26,26,26,0.1) 100%)",
         }}
       />
 

@@ -3,12 +3,8 @@ import { useState } from "react";
 import { useProducts } from "../context/ProductContext";
 import { useAuth } from "../context/AuthContext";
 
-const statusColors: Record<string, string> = {
-  available: "success",
-  sold: "danger",
-  reserved: "warning",
-  "in-progress": "primary",
-};
+const getStatusClass = (value: string) =>
+  value === "in-progress" ? "in-progress" : value;
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,7 +20,7 @@ const ProductDetail = () => {
       <div className="text-center mt-5">
         <p className="text-muted">Product not found.</p>
         <button
-          className="btn btn-dark btn-sm"
+          className="btn btn-brand-primary btn-sm"
           onClick={() => navigate("/products")}
         >
           Back to Products
@@ -48,7 +44,7 @@ const ProductDetail = () => {
         style={{
           background: "none",
           border: "none",
-          color: "#888",
+          color: "var(--color-text-muted)",
           padding: 0,
           fontSize: "0.875rem",
         }}
@@ -63,7 +59,7 @@ const ProductDetail = () => {
           <div
             style={{
               height: "320px",
-              backgroundColor: "#f5f0eb",
+              backgroundColor: "var(--color-surface-card)",
               borderRadius: "14px",
               overflow: "hidden",
               marginBottom: "12px",
@@ -107,7 +103,7 @@ const ProductDetail = () => {
                     cursor: "pointer",
                     border:
                       activeImage === i
-                        ? "2px solid #1a1a1a"
+                        ? "2px solid var(--color-base-dark)"
                         : "2px solid transparent",
                     opacity: activeImage === i ? 1 : 0.6,
                     transition: "all 0.2s",
@@ -122,8 +118,7 @@ const ProductDetail = () => {
         <div className="col-md-6">
           <div className="d-flex align-items-center gap-2 mb-2">
             <span
-              className={`badge bg-${statusColors[product.status]}`}
-              style={{ fontSize: "0.75rem" }}
+              className={`status-badge ${getStatusClass(product.status)}`}
             >
               {product.status}
             </span>
@@ -133,7 +128,7 @@ const ProductDetail = () => {
           </div>
 
           <h3 className="fw-bold mb-1">{product.name}</h3>
-          <h4 className="mb-3" style={{ color: "#1a1a1a" }}>
+          <h4 className="mb-3" style={{ color: "var(--color-text-primary)" }}>
             KES {product.price.toLocaleString()}
           </h4>
           {product.dimensions && (
@@ -155,7 +150,7 @@ const ProductDetail = () => {
           {isAdmin && (
             <div className="d-flex gap-2 mt-4">
               <button
-                className="btn btn-dark btn-sm"
+                className="btn btn-brand-primary btn-sm"
                 onClick={() => navigate(`/edit/${product.id}`)}
               >
                 Edit Product
