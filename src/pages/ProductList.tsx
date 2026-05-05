@@ -11,12 +11,8 @@ const ProductList = () => {
   // const { products } = useProducts()
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
-  const statusColors: Record<string, string> = {
-    available: "success",
-    sold: "danger",
-    reserved: "warning",
-    "in-progress": "primary",
-  };
+  const getStatusClass = (value: string) =>
+    value === "in-progress" ? "in-progress" : value;
   const statusValues = [
     "available",
     "sold",
@@ -75,7 +71,7 @@ const ProductList = () => {
           .map((p) => (
             <div className="col-12 col-md-6 col-lg-4" key={p.id}>
               <div
-                className="card border-0 h-100"
+                className="card border-0 h-100 brand-accent-card"
                 style={{
                   borderRadius: "14px",
                   overflow: "hidden",
@@ -88,7 +84,7 @@ const ProductList = () => {
                 <div
                   style={{
                     height: "180px",
-                    backgroundColor: "#f5f0eb",
+                    backgroundColor: "var(--color-surface-card)",
                     overflow: "hidden",
                   }}
                 >
@@ -129,8 +125,8 @@ const ProductList = () => {
                     {isAdmin ? (
                       <div onClick={e => e.stopPropagation()}>
                       <select
-                        className={`badge border-0 bg-${statusColors[p.status]}`}
-                        style={{ fontSize: "0.7rem", cursor: "pointer" }}
+                        className={`status-badge ${getStatusClass(p.status)} border-0`}
+                        style={{ cursor: "pointer" }}
                         value={p.status}
                         onChange={(e) =>
                           updateProduct(p.id, {
@@ -146,8 +142,7 @@ const ProductList = () => {
                       </div>
                     ) : (
                       <span
-                        className={`badge bg-${statusColors[p.status]}`}
-                        style={{ fontSize: "0.7rem" }}
+                        className={`status-badge ${getStatusClass(p.status)}`}
                       >
                         {p.status}
                       </span>

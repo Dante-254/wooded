@@ -25,6 +25,7 @@ function AddProduct() {
     status: "available",
     note: "",
     images: [] as string[],
+    dimensions: { length: 0, width: 0, height: 0 },
   });
 
   const handleChange = (
@@ -48,12 +49,25 @@ function AddProduct() {
       status: "available",
       note: "",
       images: [],
+      dimensions: { length: 0, width: 0, height: 0 },
     });
     alert(`Product "${form.name}" added!`);
   };
   const handleImageUpload = (url: string) => {
     setForm((prev) => ({ ...prev, images: [...(prev.images ?? []), url] }));
+    
   };
+  const handleDimension = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setForm(prev => ({
+    ...prev,
+    dimensions: {
+      length: prev.dimensions?.length ?? 0,
+      width: prev.dimensions?.width ?? 0,
+      height: prev.dimensions?.height ?? 0,
+      [e.target.name]: Number(e.target.value)
+    }
+  }))
+}
   return (
     <div className="row">
       <div className="col-md-6">
@@ -120,6 +134,36 @@ function AddProduct() {
           />
         </div>
         <div className="mb-3">
+  <label className="form-label">Dimensions (cm)</label>
+  <div className="d-flex gap-2">
+    <input
+      type="number"
+      name="length"
+      className="form-control"
+      placeholder="Length"
+      value={form.dimensions?.length || ''}
+      onChange={handleDimension}
+    />
+    <input
+      type="number"
+      name="width"
+      className="form-control"
+      placeholder="Width"
+      value={form.dimensions?.width || ''}
+      onChange={handleDimension}
+    />
+    <input
+      type="number"
+      name="height"
+      className="form-control"
+      placeholder="Height"
+      value={form.dimensions?.height || ''}
+      onChange={handleDimension}
+    />
+  </div>
+  <small className="text-muted">Length × Width × Height in centimetres</small>
+</div>
+        <div className="mb-3">
           <label className="form-label">Product Images</label>
           <ImageUpload onUpload={handleImageUpload} />
           {(form.images ?? []).length > 0 && (
@@ -141,7 +185,7 @@ function AddProduct() {
           )}
         </div>
 
-        <button className="btn btn-dark w-100" onClick={handleSubmit}>
+        <button className="btn btn-brand-primary w-100" onClick={handleSubmit}>
           Add Product
         </button>
       </div>

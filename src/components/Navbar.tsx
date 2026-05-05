@@ -10,14 +10,24 @@ const Navbar = () => {
   return (
     <nav
       className="navbar navbar-expand-lg px-4 py-3"
-      style={{ backgroundColor: '#1a1a1a', borderBottom: '1px solid #2e2e2e' }}
+      style={{
+        backgroundColor: 'var(--color-base-dark)',
+        borderBottom: '1px solid #2e2e2e',
+      }}
     >
-      <span
-        className="navbar-brand fw-500 text-white"
-        style={{ letterSpacing: '0.5px', fontSize: '1rem' }}
-      >
-         Villakazi Works
-      </span>
+      <div className="d-flex align-items-center gap-2 navbar-brand mb-0">
+  <img
+    src="/favicon-32x32.png"
+    alt="Villakazi Creatives logo"
+    style={{ width: '28px', height: '28px', borderRadius: '6px' }}
+  />
+  <span
+    className="fw-600 text-white"
+    style={{ letterSpacing: '0.3px', fontSize: '0.95rem' }}
+  >
+    Villakazi Creatives
+  </span>
+</div>
 
       {/* Hamburger button — only visible on mobile */}
       <button
@@ -77,19 +87,17 @@ const Navbar = () => {
 
           {user ? (
             <button
-              className="btn btn-sm"
-              style={{ backgroundColor: '#2e2e2e', color: '#ccc', border: '1px solid #3e3e3e' }}
+              className="btn btn-sm btn-brand-primary"
               onClick={() => { logout(); setOpen(false) }}
             >
               Logout
             </button>
           ) : (
             <button
-              className="btn btn-sm"
-              style={{ backgroundColor: '#2e2e2e', color: '#ccc', border: '1px solid #3e3e3e' }}
+              className="btn btn-sm btn-brand-primary"
               onClick={() => { login(); setOpen(false) }}
             >
-              <Plus size={16} color="#ccc" />
+              <Plus size={16} color="#fff" />
             </button>
           )}
         </div>

@@ -1,3 +1,75 @@
+:root {
+  --color-accent-primary: #e8793a;
+  --color-accent-secondary: #7ec8e3;
+  --color-base-dark: #1a1a1a;
+  --color-surface-card: #fafafa;
+  --color-text-primary: #1a1a1a;
+  --color-text-muted: #888888;
+  --color-badge-available: #7ec8e3;
+  --color-badge-sold: #e8793a;
+  --color-badge-reserved: #f4c97a;
+  --color-badge-in-progress: #9ab3ff;
+}
+
 * {
   font-family: 'DM Sans', sans-serif;
+}
+
+body {
+  color: var(--color-text-primary);
+}
+
+.text-brand-muted {
+  color: var(--color-text-muted) !important;
+}
+
+.bg-brand-card {
+  background-color: var(--color-surface-card) !important;
+}
+
+.btn-brand-primary {
+  background-color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  color: #fff;
+}
+
+.btn-brand-primary:hover,
+.btn-brand-primary:focus {
+  background-color: #d9672e;
+  border-color: #d9672e;
+  color: #fff;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+  color: var(--color-base-dark);
+}
+
+.status-badge.available {
+  background-color: var(--color-badge-available);
+}
+
+.status-badge.sold {
+  background-color: var(--color-badge-sold);
+  color: #fff;
+}
+
+.status-badge.reserved {
+  background-color: var(--color-badge-reserved);
+}
+
+.status-badge.in-progress {
+  background-color: var(--color-badge-in-progress);
+}
+
+.brand-accent-card {
+  border: 1px solid rgba(232, 121, 58, 0.35) !important;
+  background-color: var(--color-surface-card) !important;
 }
